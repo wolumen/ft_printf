@@ -12,42 +12,54 @@
 
 #include "ft_printf.h"
 
-t_print	*ft_initialise_tab(t_print *tab)
+int	ft_printchar(int c)
 {
-	tab->wdt = 0;						// we set everything to 0, false        
-	tab->prc = 0;
-	tab->zero = 0;
-	tab->pnt = 0;
-	tab->sign = 0;
-	tab->tl = 0;
-	tab->is_zero = 0;
-	tab->dash = 0;
-	tab->perc = 0;
-	tab->sp = 0;
-	return (tab);
+	write(1, &c, 1);
+	return (1);
 }
-int	ft_printf(const char *format, ...)
-{
-	int i;
-	int ret;
-	t_print *tab;
 
-	tab = (t_print *)malloc(sizeof(t_print));
-	if (!tab)
-		return (-1);
-	ft_initialise_tab(tab);
-	va_start(tab->args, format);
-	i = -1;
-	ret = 0;
-	while (format[++i])									// while the string exists
+int	ft_formats(va_list args, const char format)
+{
+	int	print_length;
+
+	print_length = 0;
+	if (format == 'c')
+		print_length += ft_printchar(va_arg(args, int));
+	else if (format == 's')
+		print_length += ft_printstr(va_arg(args, char *));
+	else if (format == 'p')
+		print_length += ft_print_ptr(va_arg(args, unsigned long long));
+	else if (format == 'd' || format == 'i')
+		print_length += ft_printnbr(va_arg(args, int));
+	else if (format == 'u')
+		print_length += ft_print_unsigned(va_arg(args, unsigned int));
+	else if (format == 'x' || format == 'X')
+		print_length += ft_print_hex(va_arg(args, unsigned int), format);
+	else if (format == '%')
+		print_length += ft_printpercent();
+	return (print_length);
+}
+
+int	ft_printf(const char *str, ...)
+{
+	int		i;
+	va_list	args;
+	int		print_length;
+
+	i = 0;
+	print_length = 0;
+	va_start(args, str);
+	while (str[i])
 	{
-		if (format[i] == '%')							//if the current char is %
-			i = ft_eval_format(tab, format, i + 1);		//evaluate format,why i + 1 ? because we start evaluate from the character after the %
+		if (str[i] == '%')
+		{
+			print_length += ft_formats(args, str[i + 1]);
+			i++;
+		}
 		else
-			ret += write(1, &format[i], 1);				//print what you read
+			print_length += ft_printchar(str[i]);
+		i++;
 	}
-	va_end(tab->args);
-	ret += tab->tl;
-	free (tab);
-	return (ret);
+	va_end(args);
+	return (print_length);
 }
