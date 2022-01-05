@@ -10,9 +10,14 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	libftprintf.a
+NAME	=	ft_printf.a
 
-SRC		=	
+SRC		=	ft_printf.c \
+			ft_printf_utils.c \
+			ft_print_hex.c \
+			ft_print_ptr.c \
+			ft_print_unsigned.c \
+			ft_itoa.c
 
 OBJ		=	$(SRC:%.c=%.o)
 
@@ -26,9 +31,6 @@ CFLAGS	=	-Wall -Wextra -Werror
 
 $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
-
-bonus: $(OBJ) $(OBJB)
-	ar rcs $(NAME) $(OBJ) $(OBJB)
 
 all: $(NAME)
 

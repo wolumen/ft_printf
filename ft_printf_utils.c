@@ -43,6 +43,12 @@ int	ft_printstr(char *str)
 	return (i);
 }
 
+int	ft_printpercent(void)
+{
+	write(1, "%", 1);
+	return (1);
+}
+
 int	ft_printnbr(int n)
 {
 	int		len;
@@ -53,10 +59,4 @@ int	ft_printnbr(int n)
 	len = ft_printstr(num);
 	free(num);
 	return (len);
-}
-
-int	ft_printpercent(void)
-{
-	write(1, "%", 1);
-	return (1);
 }
