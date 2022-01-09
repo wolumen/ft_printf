@@ -23,29 +23,32 @@ void	ft_putstr(char *str)
 		write(1, &str[i], 1);
 		i++;
 	}
+	// alternative
+	// while (*str)
+	// 	write(1, str++, 1);
 }
 
 int	ft_printstr(char *str)
 {
-	int	i;
+	int	len;
 
-	i = 0;
+	len = 0;
 	if (str == NULL)
 	{
 		ft_putstr("(null)");
 		return (6);
 	}
-	while (str[i])
+	while (str[len])
 	{
-		write(1, &str[i], 1);
-		i++;
+		write(1, &str[len], 1);
+		len++;
 	}
-	return (i);
+	return (len);
 }
 
 int	ft_printpercent(void)
 {
-	write(1, "%", 1);						// STEFFEN warum % rot? müssen es nicht '%' sein?
+	write(1, "%", 1);
 	return (1);
 }
 

@@ -28,13 +28,15 @@ int	ft_print_ptr(unsigned long ptr)
 	{
 		temp = ptr % 16;
 		if (temp < 10)
-			*(hexadecimalNumber + j++) = temp + '0';
-		else 
-			*(hexadecimalNumber + j++) = (temp - 10) + 'a';
-		i++;
+			hexadecimalNumber[j] = temp + '0';
+		else
+			hexadecimalNumber[j] = (temp - 10) + 'a';
+		j++;
 		ptr = ptr / 16;
 	}
-	while (j > 0)										// don't forget the initial '0x' which raises i by 2 !!!
-		ft_putchar(*(hexadecimalNumber + --j));
+	i += j;
+	j--;
+	while (j >= 0)
+		ft_putchar(hexadecimalNumber[j--]);
 	return (i);
 }
