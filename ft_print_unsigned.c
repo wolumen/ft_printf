@@ -22,8 +22,8 @@ int	ft_print_unsigned(unsigned int n)
 		print_length += write(1, "0", 1);
 	else
 	{
-		num = ft_uitoa(n);						// gibt str zurück
-		print_length += ft_printstr(num);		// gibt int zurück und printed
+		num = ft_uitoa(n);
+		print_length += ft_printstr(num);
 		free(num);
 	}
 	return (print_length);
@@ -41,9 +41,9 @@ char	*ft_uitoa(unsigned int n)
 	num[len] = '\0';
 	while (n != 0)
 	{
-		num[len - 1] = n % 10 + 48;				// STEFFEN woher weiß PC hier 10 + 48 unterschiedlich zubehandeln?
+		num[len - 1] = n % 10 + '0';
 		n = n / 10;
-		len--;									// wieder von hinten nach vorn drucken
+		len--;
 	}
 	return (num);
 }

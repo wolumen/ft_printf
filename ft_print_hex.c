@@ -12,12 +12,12 @@
 
 #include "ft_printf.h"
 
-int	ft_print_hex(unsigned int num, const char format)				// format is entweder x oder X STEFFEN warum nur unsigned? keine negativen hex?
+int	ft_print_hex(unsigned int num, const char format)				// format is entweder x oder X
 {
-	char hexadecimalNumber[2 * sizeof(size_t) + 1];
-	int i;
-	int j;
-	int temp;
+	char	hexstr[2 * sizeof(size_t) + 1];
+	int		i;
+	int		j;
+	int		temp;
 
 	if (num == 0)
 		return (write(1, "0", 1));
@@ -27,17 +27,17 @@ int	ft_print_hex(unsigned int num, const char format)				// format is entweder x
 	{
 		temp = num % 16;
 		if (temp < 10)
-			hexadecimalNumber[i] = temp + '0';
+			hexstr[i] = temp + '0';
 		else if (format == 'x')
-			hexadecimalNumber[i] = (temp - 10) + 'a';
+			hexstr[i] = (temp - 10) + 'a';
 		else if (format == 'X')
-			hexadecimalNumber[i] = (temp - 10) + 'A';
+			hexstr[i] = (temp - 10) + 'A';
 		i++;
 		num = num / 16;
 	}
 	j = i - 1;
 	while (j >= 0)
-		ft_putchar(hexadecimalNumber[j--]);
+		ft_putchar(hexstr[j--]);
 	return (i);
 }
 

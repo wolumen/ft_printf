@@ -52,18 +52,6 @@ int	ft_printpercent(void)
 	return (1);
 }
 
-int	ft_printnbr(int n)
-{
-	int		print_length;
-	char	*str;
-
-	print_length = 0;
-	str = ft_itoa(n);
-	print_length = ft_printstr(str);
-	free(str);								// in itoa allokalisiert
-	return (print_length);
-}
-
 int	ft_printchar(int c)
 {
 	write(1, &c, 1);

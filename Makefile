@@ -16,7 +16,8 @@ SRC		=	ft_printf.c \
 			ft_printf_utils.c \
 			ft_print_hex.c \
 			ft_print_ptr.c \
-			ft_print_unsigned.c
+			ft_print_unsigned.c \
+			ft_printnbr.c
 
 OBJ		=	$(SRC:%.c=%.o)
 
@@ -40,7 +41,3 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC)
-	gcc -nostartfiles -shared -o libft.so $(OBJ)
