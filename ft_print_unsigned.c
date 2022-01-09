@@ -12,17 +12,21 @@
 
 #include "ft_printf.h"
 
-int	ft_num_len(unsigned	int num)
+int	ft_print_unsigned(unsigned int n)
 {
-	int	len;
+	int		print_length;
+	char	*num;
 
-	len = 0;
-	while (num != 0)
+	print_length = 0;
+	if (n == 0)
+		print_length += write(1, "0", 1);
+	else
 	{
-		len++;
-		num = num / 10;
+		num = ft_uitoa(n);						// gibt str zurück
+		print_length += ft_printstr(num);		// gibt int zurück und printed
+		free(num);
 	}
-	return (len);
+	return (print_length);
 }
 
 char	*ft_uitoa(unsigned int n)
@@ -37,26 +41,22 @@ char	*ft_uitoa(unsigned int n)
 	num[len] = '\0';
 	while (n != 0)
 	{
-		num[len - 1] = n % 10 + 48;
+		num[len - 1] = n % 10 + 48;				// STEFFEN woher weiß PC hier 10 + 48 unterschiedlich zubehandeln?
 		n = n / 10;
-		len--;
+		len--;									// wieder von hinten nach vorn drucken
 	}
 	return (num);
 }
 
-int	ft_print_unsigned(unsigned int n)
+int	ft_num_len(unsigned	int num)
 {
-	int		print_length;
-	char	*num;
+	int	len;
 
-	print_length = 0;
-	if (n == 0)
-		print_length += write(1, "0", 1);
-	else
+	len = 0;
+	while (num != 0)
 	{
-		num = ft_uitoa(n);
-		print_length += ft_printstr(num);
-		free(num);
+		len++;
+		num = num / 10;
 	}
-	return (print_length);
+	return (len);
 }

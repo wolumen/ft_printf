@@ -45,18 +45,24 @@ int	ft_printstr(char *str)
 
 int	ft_printpercent(void)
 {
-	write(1, "%", 1);
+	write(1, "%", 1);						// STEFFEN warum % rot? müssen es nicht '%' sein?
 	return (1);
 }
 
 int	ft_printnbr(int n)
 {
-	int		len;
-	char	*num;
+	int		print_length;
+	char	*str;
 
-	len = 0;
-	num = ft_itoa(n);
-	len = ft_printstr(num);
-	free(num);
-	return (len);
+	print_length = 0;
+	str = ft_itoa(n);
+	print_length = ft_printstr(str);
+	free(str);								// in itoa allokalisiert
+	return (print_length);
+}
+
+int	ft_printchar(int c)
+{
+	write(1, &c, 1);
+	return (1);
 }

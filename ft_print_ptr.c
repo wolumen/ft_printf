@@ -12,47 +12,29 @@
 
 #include "ft_printf.h"
 
-int	ft_ptr_len(uintptr_t num)
+int	ft_print_ptr(unsigned long ptr)
 {
-	int	len;
+	char hexadecimalNumber[2 * sizeof(size_t) + 1];
+	int i;
+	int j;
+	int temp;
 
-	len = 0;
-	while (num != 0)
+	i = 0;
+	j = 0;
+	i += write(1, "0x", 2);									// write returns int
+	if (ptr == 0)											// 0 ? NULL ? !ptr ?  ???
+		return (i + write(1, "0", 1));
+	while (ptr != 0)
 	{
-		len++;
-		num = num / 16;
+		temp = ptr % 16;
+		if (temp < 10)
+			*(hexadecimalNumber + j++) = temp + '0';
+		else 
+			*(hexadecimalNumber + j++) = (temp - 10) + 'a';
+		i++;
+		ptr = ptr / 16;
 	}
-	return (len);
-}
-
-void	ft_put_ptr(uintptr_t num)
-{
-	if (num >= 16)
-	{
-		ft_put_ptr(num / 16);
-		ft_put_ptr(num % 16);
-	}
-	else
-	{
-		if (num <= 9)
-			ft_putchar_fd((num + '0'), 1);
-		else
-			ft_putchar_fd((num - 10 + 'a'), 1);
-	}
-}
-
-int	ft_print_ptr(unsigned long long ptr)
-{
-	int	print_length;
-
-	print_length = 0;
-	print_length += write(1, "0x", 2);
-	if (ptr == 0)
-		print_length += write(1, "0", 1);
-	else
-	{
-		ft_put_ptr(ptr);
-		print_length += ft_ptr_len(ptr);
-	}
-	return (print_length);
+	while (j > 0)										// don't forget the initial '0x' which raises i by 2 !!!
+		ft_putchar(*(hexadecimalNumber + --j));
+	return (i);
 }

@@ -16,8 +16,7 @@ SRC		=	ft_printf.c \
 			ft_printf_utils.c \
 			ft_print_hex.c \
 			ft_print_ptr.c \
-			ft_print_unsigned.c \
-			ft_itoa.c
+			ft_print_unsigned.c
 
 OBJ		=	$(SRC:%.c=%.o)
 
