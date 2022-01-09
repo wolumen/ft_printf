@@ -14,7 +14,7 @@
 
 int	ft_print_hex(unsigned int num, const char format)				// format is entweder x oder X
 {
-	char	hexstr[2 * sizeof(size_t) + 1];
+	char	hexstr[2 * sizeof(unsigned int) + 1];
 	int		i;
 	int		j;
 	int		temp;

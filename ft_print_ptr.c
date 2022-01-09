@@ -14,7 +14,7 @@
 
 int	ft_print_ptr(unsigned long ptr)
 {
-	char	hexstr[2 * sizeof(size_t) + 1];
+	char	hexstr[2 * sizeof(unsigned long) + 1];
 	int		i;
 	int		j;
 	int		temp;
