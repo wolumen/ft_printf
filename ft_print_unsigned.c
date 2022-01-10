@@ -12,6 +12,8 @@
 
 #include "ft_printf.h"
 
+int	ft_num_len(unsigned	int num);
+
 int	ft_print_unsigned(unsigned int n)
 {
 	int		print_length;
@@ -23,7 +25,7 @@ int	ft_print_unsigned(unsigned int n)
 	else
 	{
 		num = ft_uitoa(n);
-		print_length += ft_printstr(num);
+		print_length += ft_print_str(num);
 		free(num);
 	}
 	return (print_length);

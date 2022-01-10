@@ -28,7 +28,7 @@ void	ft_putstr(char *str)
 	// 	write(1, str++, 1);
 }
 
-int	ft_printstr(char *str)
+int	ft_print_str(char *str)
 {
 	int	len;
 
@@ -46,13 +46,13 @@ int	ft_printstr(char *str)
 	return (len);
 }
 
-int	ft_printpercent(void)
+int	ft_print_percent(void)
 {
 	write(1, "%", 1);
 	return (1);
 }
 
-int	ft_printchar(int c)
+int	ft_print_char(int c)
 {
 	write(1, &c, 1);
 	return (1);

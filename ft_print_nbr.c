@@ -15,14 +15,14 @@
 static long int	ft_len(int n);
 static char		*ft_array(char *str, unsigned int number, long int len);
 
-int	ft_printnbr(int n)
+int	ft_print_nbr(int n)
 {
 	int		print_length;
 	char	*str;
 
 	print_length = 0;
 	str = ft_itoa(n);
-	print_length = ft_printstr(str);
+	print_length = ft_print_str(str);
 	free(str);
 	return (print_length);
 }
