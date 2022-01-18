@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	ft_printf.a
+NAME	=	libftprintf.a
 
 SRC		=	ft_printf.c \
 			ft_printf_utils.c \
