@@ -4,7 +4,7 @@
 
 This project consists of programming a library that contains a simplified version of the printf function. Only a limited selection of functions may be used.  
 The core element is to learn about variadic arguments.   
-All code has to compile with -Wall -Werror -Wextra and to be free of memory leaks. The written code must follow certain rules, which are specified in a standard of the school 42.
+The files have to compile with -Wall -Werror -Wextra and to be free of memory leaks. The written code must follow certain rules, which are specified in a standard of the school 42.
 
 
 ### Allowed functions
